@@ -1,15 +1,24 @@
 <?php
-
 $debug = false;
 date_default_timezone_set('Asia/Jakarta');
 $url = "https://api.myquran.com/v1/sholat/jadwal/{kodeKota}/{tanggal}";
+$urlCari = "https://api.myquran.com/v1/sholat/kota/cari/{kota}";
 $kota = "Surabaya";
-$kodeKota = "1638";
 
+//Find city code
 if (isset($_GET['kota']))   $kota = $_GET['kota'];
+$urlCari = str_replace("{kota}",$kota,$urlCari);
+$configKota = json_decode(file_get_contents($urlCari),false);
+if ($configKota -> status == false)     die("Kota tidak ditemukan");
+$kodeKota = $configKota -> data[0] -> id;
+$kota = $configKota -> data[0] -> lokasi;
+
+//Find date
+$tanggal = date("Y/m/d");
+if (isset($_GET['tanggal']))   $tanggalParam = strtotime($_GET['tanggal']);
+if ($tanggalParam) $tanggal = date("Y/m/d",$tanggalParam);
 
 //Initialization
-$tanggal = date("Y/m/d");
 $url = str_replace("{tanggal}",$tanggal, str_replace("{kodeKota}",$kodeKota,$url));
 $feedLink = htmlspecialchars( 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8' );
 $feedHome = htmlspecialchars( 'https://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8' );
@@ -25,18 +34,17 @@ $dhuhur = $config -> data -> jadwal -> dzuhur;
 $ashar = $config -> data -> jadwal -> ashar;
 $maghrib = $config -> data -> jadwal -> maghrib;
 $isya = $config -> data -> jadwal -> isya;
-//$guid = str_replace(".php","",$feedLink) . "-" . str_replace("/","-",$tanggal) . ".php";
 $guid = $feedLink . "?tanggal=" . str_replace("/","",$tanggal);
 
 if ($debug || isset($_GET['tanggal'])) {
     $content = '<html>
     <head>
     <meta name="twitter:card" content="summary">
-    <meta property="og:title" content="Jadwal Waktu Sholat Kota Surabaya">
-    <meta property="og:description" content="Jadwal Waktu Sholat Kota Surabaya dan Sekitarnya">
-    <meta property="og:url" content="waktu-sholat.php">
+    <meta property="og:title" content="Jadwal Waktu Sholat ' . $kota .'">
+    <meta property="og:description" content="Jadwal Waktu Sholat ' . $kota . ' dan Sekitarnya">
+    <meta property="og:url" content="' . $feedLink . '">
     </head>
-    <h1 align=center>Jadwal Waktu Sholat <br> Kota ' . $kota . '</h1>
+    <h1 align=center>Jadwal Waktu Sholat <br> ' . $kota . '</h1>
     <p align=center>' . $tanggal2 . '</p>
     <table align=center>
         <tr><td>Subuh  </td><td> : </td><td>' . $subuh . '</td></tr>
@@ -48,10 +56,6 @@ if ($debug || isset($_GET['tanggal'])) {
     <p align=center>Ayo sholat berjamaah !</p>
     </html>';
     echo $content;
-    
-    //echo "URL: " . $url . PHP_EOL;
-    //print_r ($config);
-    //print_r ($config -> data -> jadwal);
 }
 else {
     header('Content-type: application/xml');
@@ -77,15 +81,15 @@ else {
 >
 
 <channel>
-<title>Jadwal Waktu Sholat Kota ' . $kota . '</title>
+<title>Jadwal Waktu Sholat ' . $kota . '</title>
 <atom:link href="' . $feedLink . '" rel="self" type="application/rss+xml" />
 <link>' . $feedHome . '</link>
-<description>Jadwal Waktu Sholat Kota ' . $kota . '</description>
+<description>Jadwal Waktu Sholat ' . $kota . '</description>
 <language>id-ID</language>
 <copyright>Copyright ' . date('Y') . '</copyright>
 <creativeCommons:license>http://creativecommons.org/licenses/by-nc-sa/3.0/</creativeCommons:license>
 <item>
-    <title>Jadwal Waktu Sholat Kota ' . $kota . '</title>
+    <title>Jadwal Waktu Sholat ' . $kota . '</title>
     <guid>' . $guid . '</guid>
     <pubDate>' . $pubDate . '</pubDate>
     <dc:creator>Xilver Kamui</dc:creator>
@@ -98,7 +102,5 @@ else {
 </rss>
     ';
 }
-
-
 
 ?>
