@@ -1,0 +1,5 @@
+# Ignore directory .github
+.github/
+
+# Ignore directory output
+# output/
