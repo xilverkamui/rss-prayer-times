@@ -1,20 +1,26 @@
 # RSS Data for Indonesian Islamic Prayer Times
-Daily RSS prayer times in Indonesian times.
-This script uses data from Bang Hasan / Fathimah API https://github.com/banghasan/fathimah.
+This project is a PHP script that retrieves prayer times for a specific location (currently Surabaya) and generates an RSS feed.
 
-## Deployment
-Directly copy file `waktu-sholat.php` to your web hosting.
+## Installation
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/xilverkamui/rss-prayer-times.git
+   
+2. Navigate to the project directory:
+   ```bash
+   cd islamicfinder-rss-prayer-times
+
+3. Place the project files in your server's web directory.
+
+OR
+
+Directly copy file `prayer-times-surabaya.php` to your web hosting.
 
 ## Usage
 It will display prayer times for Surabaya city today
 ```
-http(s)://[YOUR-DOMAIN]/waktu-sholat.php'
+http(s)://[YOUR-DOMAIN]/prayer-times-surabaya.php'
 ```
-It will display prayer times for Kediri region today
-```
-http(s)://[YOUR-DOMAIN]/waktu-sholat.php?kota=[CITY]'
-```
-It will display prayer times for Kediri region on respective date
-```
-http(s)://[YOUR-DOMAIN]/waktu-sholat.php?kota=[CITY]&tanggal=[yyyy-mm-dd]'
-```
+
+## External References
+- [**Al Adhan**](https://aladhan.com/) - External website used to retrieve prayer times.
