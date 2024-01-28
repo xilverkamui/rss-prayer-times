@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<rss version="2.0" 
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" 
+    xmlns:media="http://search.yahoo.com/mrss/"
+>
+<channel>
+<title>Jadwal Waktu Sholat Kota Surabaya,Indonesia</title>
+<atom:link href="https://app.xkamui.eu.org/rss/prayer-times-surabaya.php" rel="self" type="application/rss+xml" />
+<link>https://app.xkamui.eu.org/rss</link>
+<description>Jadwal Waktu Sholat Kota Surabaya,Indonesia</description>
+<language>id-ID</language>
+<copyright>Copyright 2024</copyright>
+<creativeCommons:license>http://creativecommons.org/licenses/by-nc-sa/3.0/</creativeCommons:license>
+<item>
+    <title>Jadwal Waktu Sholat Kota Surabaya,Indonesia</title>
+    <guid>https://api.aladhan.com/v1/timingsByAddress/28-01-2024</guid>
+    <pubDate>Sun, 28 Jan 2024 05:54:14 +0000</pubDate>
+    <dc:creator>Xilver Kamui</dc:creator>
+    <description><![CDATA[
+    <strong>Al Ahad, 28 Jan 2024</strong><br>
+    <strong>17 Rajab 1445</strong><br>
+    Subuh &nbsp; &nbsp;: 04:06<br>
+    Dhuhur &nbsp;: 11:42<br>
+    Ashar &nbsp; &nbsp; &nbsp;: 15:02<br>
+    Maghrib : 17:55<br>
+    Isya &nbsp; &nbsp; &nbsp; &nbsp; : 19:09<br><br>
+    
+    Ayo sholat berjamaah !]]></description>
+    <content:encoded><![CDATA[
+    <strong>Al Ahad, 28 Jan 2024</strong><br>
+    <strong>17 Rajab 1445</strong><br>
+    Subuh &nbsp; &nbsp;: 04:06<br>
+    Dhuhur &nbsp;: 11:42<br>
+    Ashar &nbsp; &nbsp; &nbsp;: 15:02<br>
+    Maghrib : 17:55<br>
+    Isya &nbsp; &nbsp; &nbsp; &nbsp; : 19:09<br><br>
+    
+    Ayo sholat berjamaah !]]>
+    </content:encoded>
+    <media:content medium="image" url=""/>
+</item>
+
+</channel>
+</rss>
