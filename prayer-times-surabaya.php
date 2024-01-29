@@ -1,11 +1,12 @@
 <?php
 // Website URL containing prayer times
+date_default_timezone_set('Asia/Jakarta');
 $link = 'https://api.aladhan.com/v1/timingsByAddress/{tanggal}?address={alamat}&method=20';
 $address = 'Surabaya,Indonesia';
 $date = date('d-m-Y');
 $link = str_replace('{alamat}',$address,str_replace('{tanggal}',$date,$link));
 $output = 'rss';
-$cache = "no";
+$cache = 'no';
 
 // Download content from the provided URL
 $html_content = file_get_contents($link);
