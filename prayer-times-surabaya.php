@@ -6,12 +6,12 @@ $address = 'Surabaya,Indonesia';
 $date = date('d-m-Y');
 $link = str_replace('{alamat}',$address,str_replace('{tanggal}',$date,$link));
 $output = 'rss';
-$cache = 'no';
+$cache = 'yes';
 
 // Download content from the provided URL
 $html_content = file_get_contents($link);
 $output = isset($_GET['output']) ? $_GET['output'] : 'rss';
-$cache = isset($_GET['$cache']) ? $_GET['$cache'] : yes;
+$cache = isset($_GET['$cache']) ? $_GET['$cache'] : 'yes';
 
 // Getting prayer times from the downloaded HTML script
 $feedLink = htmlspecialchars( 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8' );
