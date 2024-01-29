@@ -5,7 +5,7 @@ $address = 'Surabaya,Indonesia';
 $date = date('d-m-Y');
 $link = str_replace('{alamat}',$address,str_replace('{tanggal}',$date,$link));
 $output = 'rss';
-$cache = no;
+$cache = "no";
 
 // Download content from the provided URL
 $html_content = file_get_contents($link);
