@@ -29,42 +29,43 @@ $isya = $prayer_times->data->timings->Isha;
 $tanggalHijri = $prayer_times->data->date->hijri->day . " " . $prayer_times->data->date->hijri->month->en . " " . $prayer_times->data->date->hijri->year;
 $pubDate = date('D, d M Y H:i:s O');
 $tanggal = $prayer_times->data->date->readable;
-$day = $prayer_times->data->date->hijri->weekday->en;
+$day = $prayer_times->data->date->gregorian->weekday->en;
+$dayHijri = $prayer_times->data->date->hijri->weekday->en;
 
+$content  = '
+<strong>' . $day . ", " . $tanggal . '</strong><br>
+<strong>' . $dayHijri . ", " . $tanggalHijri . '</strong><br>
+Subuh &nbsp; &nbsp;: ' . $subuh . '<br>
+Dhuhur &nbsp;: ' . $dhuhur . '<br>
+Ashar &nbsp; &nbsp; &nbsp;: ' . $ashar . '<br>
+Maghrib : ' . $maghrib . '<br>
+Isya &nbsp; &nbsp; &nbsp; &nbsp; : ' . $isya . '<br><br>
+
+Ayo sholat berjamaah !';
+    
 // Handle output based on the 'filetype' query parameter
 if ($output === 'html') {
     header('Content-Type: text/html');
-    print_r($prayer_times);
+    echo "<html>";
+    //print_r($prayer_times);
     echo "
-    Feed Link: " . $feedLink . "
-    Feed Home: " . $feedHome . "
-    GUID: " . $guid . "
-    Published Date: " . $pubDate . "
-    City: " . $city . "
-    Date: " . $date . "
-    Tanggal: " . $tanggal . "
-    Subuh: " . $subuh . "
-    Dhuhur: " . $dhuhur . "
-    Ashar: " . $ashar . "
-    Maghrib: " . $maghrib . "
-    Isya: " . $isya. "
+    Link: " . $link . "<br>
+    Feed Link: " . $feedLink . "<br>
+    Feed Home: " . $feedHome . "<br>
+    GUID: " . $guid . "<br>
+    Published Date: " . $pubDate . "<br>
+    City: " . $city . "<br>
+    Date: " . $date . "<br>
     ";
+    echo $content;
+    echo "</html>";
 } else {
     // Output as RSS
     header('Content-type: application/xml');
     if ($static) {
         header('Cache-Control: public, max-age=14400');
     }
-    $content  = '
-    <strong>' . $day . ", " . $tanggal . '</strong><br>
-    <strong>' . $tanggalHijri . '</strong><br>
-    Subuh &nbsp; &nbsp;: ' . $subuh . '<br>
-    Dhuhur &nbsp;: ' . $dhuhur . '<br>
-    Ashar &nbsp; &nbsp; &nbsp;: ' . $ashar . '<br>
-    Maghrib : ' . $maghrib . '<br>
-    Isya &nbsp; &nbsp; &nbsp; &nbsp; : ' . $isya . '<br><br>
-    
-    Ayo sholat berjamaah !';
+
     
     echo '<?xml version="1.0" encoding="UTF-8"?> 
 <rss version="2.0" 
